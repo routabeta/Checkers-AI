@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="display: block; text-align: center">
+    <div id="title">
+      <h1>Alpha Beta Pruning Checkers AI</h1>
+    </div>
+
+
+    <div
+      id="board" 
+      style="
+        background-color: bisque;
+        width: 720px;
+        height: 720px;
+        margin-left: auto;
+        margin-right: auto;
+      "
+    >
+      <!-- first row -->
+      <div id="row0" style="display: flex">
+        <div
+          id="00" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="01" 
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="02" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="03"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="04" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="05"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="06" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="07"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+      </div>
+
+      <!-- second row -->
+      <div id="row1" style="display: flex">
+        <div
+          id="10"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="11" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="12"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="13" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="14"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="15" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="16"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="17" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+      </div>
+
+      <!-- third row -->
+      <div id="row2" style="display: flex">
+        <div
+          id="20" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="21"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="22" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="23"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="24" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="25"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="26" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="27"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+      </div>
+
+      <!-- fourth row -->
+      <div id="row3" style="display: flex">
+        <div
+          id="30"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="31" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="32"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="33" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="34"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="35" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="36"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="37" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+      </div>
+
+      <!-- fifth row -->
+      <div id="row4" style="display: flex">
+        <div
+          id="40" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="41"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="42" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="43"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="44" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="45"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="46" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="47"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+      </div>
+
+      <!-- sixth row -->
+      <div id="row5" style="display: flex">
+        <div
+          id="50"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="51" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="52"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="53" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="54"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="55" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="56"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="57"class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+      </div>
+
+      <!-- seventh row -->
+      <div id="row6" style="display: flex">
+        <div
+          id="60" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="61"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="62" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="63"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="64" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="65"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="66" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="67"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+      </div>
+
+      <!-- eigth row -->
+      <div id="row7" style="display: flex">
+        <div
+          id="70"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="71" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="72"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="73" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="74"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="75" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+        <div
+          id="76"
+          style="width: 90px; height: 90px; background-color: #ba7a3a"
+        ></div>
+        <div
+          id="77" class="cell"
+          style="
+            width: 90px;
+            height: 90px;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        ></div>
+      </div>
+    </div>
+    <script src="user.js"></script>
+  </body>
+</html>
