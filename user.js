@@ -148,10 +148,12 @@ function handleCellClick(){
         proposedMove[targettedCellId.charAt(0)][targettedCellId.charAt(1)] = proposedMove[cellId.charAt(0)][cellId.charAt(1)].toUpperCase()
   
         proposedMove[cellId.charAt(0)][cellId.charAt(1)] = "."
-      }
+
+      } else {
       proposedMove[targettedCellId.charAt(0)][targettedCellId.charAt(1)] = proposedMove[cellId.charAt(0)][cellId.charAt(1)]
 
       proposedMove[cellId.charAt(0)][cellId.charAt(1)] = "."
+      } //if going to last rank promote, else just swap
     } else {
 
 
