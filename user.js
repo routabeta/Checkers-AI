@@ -1,7 +1,7 @@
-//MAKE IT SO THAT MY LOGIC CAN HANDLE WHEN THE USER JUMPS!!!!!!!!!!!!!!!
 
 selectedCell = null;
 currentPlayer = "";
+starterPlayer = ""//stop the user from doing anything if it is not their turn
 currentMoves = []
 let updatedBoard = [];//empty array filled with objects of pieces
 let currentStringBoard = [
@@ -79,8 +79,19 @@ function updateBoard(sentArray) {
   
 } //update board
 
+function highlightPlayerTurn(){
+  if (currentPlayer == "redMax"){
+    document.querySelector("#boardTop").style["box-shadow"] = "0px 2px 30px 15px rgb(177, 177, 177)";
+    document.querySelector("#boardBottom").style["box-shadow"] = "none";
+  } else {
+
+    document.querySelector("#boardBottom").style["box-shadow"] = "0px -2px 30px 15px rgb(177, 177, 177)";
+    document.querySelector("#boardTop").style["box-shadow"] = "none";
+  }
+}
+
 function handleCellClick(){
-  borderIf : if (event.target.closest(".cell")){
+  borderIf : if (event.target.closest(".cell") && currentPlayer == starterPlayer){
     if( event.target.closest(".piece")){
     cellId = event.target.closest(".cell").id //if click on circle, all good and assign cell id like 00 or 54
     } else {
@@ -89,13 +100,12 @@ function handleCellClick(){
 
     if(currentPlayer == "redMax"){ //exit the entire function if click on wrong colour of piece (do nothing)
 
-      if(event.target.closest(".piece").style["background-color"] =="black"  || event.target.closest(".piece").style["background-color"] =="purple"){
+      if(updatedBoard[cellId.charAt(0)* 8 + parseInt(cellId.charAt(1))].piece.toLowerCase() =="w"){
         return;
       }
     } else {
 
-
-      if(event.target.closest(".piece").style["background-color"] =="red" || event.target.closest(".piece").style["background-color"] =="orange"){
+      if(updatedBoard[cellId.charAt(0)* 8 + parseInt(cellId.charAt(1))].piece.toLowerCase() =="r"){
         return;
       }
     }
@@ -119,7 +129,7 @@ function handleCellClick(){
 
   }//if
   
-  moveIf : if(selectedCell && event.target.closest(".cell") ){
+  moveIf : if(selectedCell && event.target.closest(".cell") && currentPlayer == starterPlayer ){
     
     for(let i = 0; i< updatedBoard.length; i++){
       if(updatedBoard[i].row + "" + updatedBoard[i].column == event.target.closest(".cell").id &&  ["w", "r", "R", "W"].includes(updatedBoard[i].piece) ){
@@ -193,8 +203,12 @@ function handleCellClick(){
 
         //display move
         updateBoard(currentStringBoard)
+       
+        //change the player to the computer
+        currentPlayer == "redMax" ? currentPlayer = "whiMin" : currentPlayer = "redMax"
+        highlightPlayerTurn()
+       
         //get computer move and possible next plapyer moves
-        
         fetch(baseURL + "getComputerMove/" + currentStringBoard).then(
           //send array as strings to the server
           (response) => {
@@ -205,8 +219,10 @@ function handleCellClick(){
               updateBoard(currentStringBoard);
               currentMoves = resp[1].allStates
               
-      
+              
+              //reset current player to player
               currentPlayer = resp[2].player
+              highlightPlayerTurn()
             });
           }
         );
@@ -494,8 +510,12 @@ fetch(baseURL + "loadInformation/" + currentStringBoard).then(
   //send array as strings to the server
   (response) => {
     response.json().then((resp) => {
+      //load starting info like player and available moves
       currentPlayer = resp[1].player
       currentMoves = resp[0].allStates
+      starterPlayer = resp[1].player
+
+      highlightPlayerTurn()
 
       updateBoard(currentStringBoard);
     });
