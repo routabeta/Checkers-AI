@@ -4,7 +4,7 @@ import copy
 # make a function to display the board nicely
 # make a draw counter
 
-player = "redMax"
+player = "whiMin"
 
 
 #clear game.txt

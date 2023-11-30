@@ -52,22 +52,22 @@ function updateBoard(sentArray) {
       document.getElementById(
         updatedBoard[i].row + "" + updatedBoard[i].column
       ).innerHTML =
-        "<div class='piece' style='padding: 12px;width: 40px; height: 40px; background-color: red;border: 2px solid white;border-radius: 50px; '></div>";
+        "<div class='piece' id='r' ></div>";
     } else if (updatedBoard[i].piece == "w") {
       document.getElementById(
         updatedBoard[i].row + "" + updatedBoard[i].column
       ).innerHTML =
-        "<div class='piece'style='padding: 12px;width: 40px; height: 40px; background-color: black;border: 2px solid white;border-radius: 50px; '></div>";
+        "<div class='piece' id='w' ></div>";
     } else if (updatedBoard[i].piece == "R") {
       document.getElementById(
         updatedBoard[i].row + "" + updatedBoard[i].column
       ).innerHTML =
-        "<div class='piece'style='padding: 12px;width: 40px; height: 40px; background-color: orange;border: 2px solid white;border-radius: 50px; '></div>";
+        "<div class='piece' id='R' ></div>";
     } else if (updatedBoard[i].piece == "W") {
       document.getElementById(
         updatedBoard[i].row + "" + updatedBoard[i].column
       ).innerHTML =
-        "<div class='piece'style='padding: 12px;width: 40px; height: 40px; background-color: purple;border: 2px solid white;border-radius: 50px; '></div>";
+        "<div class='piece' id='W'></div>";
     } else {
       document.getElementById(
         updatedBoard[i].row + "" + updatedBoard[i].column
