@@ -81,11 +81,11 @@ function updateBoard(sentArray) {
 
 function highlightPlayerTurn(){
   if (currentPlayer == "redMax"){
-    document.querySelector("#boardTop").style["box-shadow"] = "0px 2px 30px 15px rgb(177, 177, 177)";
+    document.querySelector("#boardTop").style["box-shadow"] = "0px 165px 30px 180px rgb(177, 177, 177, 0.3)";
     document.querySelector("#boardBottom").style["box-shadow"] = "none";
   } else {
 
-    document.querySelector("#boardBottom").style["box-shadow"] = "0px -2px 30px 15px rgb(177, 177, 177)";
+    document.querySelector("#boardBottom").style["box-shadow"] = "0px -165px 30px 180px rgb(177, 177, 177, 0.3)";
     document.querySelector("#boardTop").style["box-shadow"] = "none";
   }
 }
